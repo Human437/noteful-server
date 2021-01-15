@@ -1,12 +1,12 @@
 const knex = require('knex')
 const app = require('./app')
 
-const { PORT, DB_URL } = require('./config')
+const { PORT, DATABASE_URL } = require('./config')
 
 const db = knex({
   client: 'pg',
-  connection: DB_URL,
-  //Uses TEST_DB_URL when testing
+  connection: DATABASE_URL,
+  //Uses TEST_DATABASE_URL when testing
 })
 
 app.set('db', db)
