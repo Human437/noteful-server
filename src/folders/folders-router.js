@@ -40,8 +40,18 @@ foldersRouter
           })
           .catch(next)
       })
-      .get((req, res, next) => {
-        res.json(serializeFolder(res.folder))
+    .get((req, res, next) => {
+    res.json(serializeFolder(res.folder))
+    })
+    .delete((req, res, next) => {
+        FoldersService.deleteFolder(
+          req.app.get('db'),
+          req.params.folderID
+        )
+          .then(numRowsAffected => {
+            res.status(204).end()
+          })
+          .catch(next)
       })
 
 module.exports = foldersRouter
